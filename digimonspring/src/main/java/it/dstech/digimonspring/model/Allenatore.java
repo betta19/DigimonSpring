@@ -20,4 +20,41 @@ public class Allenatore {
 	@OneToMany(mappedBy = "allenatore")
     List<Digimon> listaDigimon = new ArrayList<Digimon>();
 	
+	public Allenatore() {
+		
+	}
+
+	protected Allenatore(Long id, String nome, List<Digimon> listaDigimon) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.listaDigimon = listaDigimon;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public List<Digimon> getListaDigimon() {
+		return listaDigimon;
+	}
+
+	public void setListaDigimon(List<Digimon> listaDigimon) {
+		this.listaDigimon = listaDigimon;
+	}
+	
+	
+	
 }

@@ -29,7 +29,7 @@ public class Digimon {
 
 
 
-	public Digimon(Long id, String nome, int hp, int atk, int def, int res, Evoluzione evo, Allenatore allenatore) {
+	protected Digimon(Long id, String nome, int hp, int atk, int def, int res, Evoluzione evo, Allenatore allenatore) {
 		super();
 		this.id = id;
 		this.nome = nome;
