@@ -12,8 +12,11 @@
 	<div align="left">
 		<h2>Manager Digimon</h2>
 		<h3>
-			<a href="newDigimon">New Digimon</a>
+			<a href="newDigimon">Aggiungi un Digimon</a>
 		</h3>
+		
+		Ecco la lista dei Digimon disponibili: <br>
+		
 		<table border="1" cellpadding="5">
 			<tr>
 				<th>ID</th>
@@ -25,6 +28,7 @@
 				<th>Evoluzione</th>
 			</tr>
 			<c:forEach items="${listaDigimon}" var="digimon">
+			<c:if test="${digimon.assegnato == false}">
 				<tr>
 					<td>${digimon.id}</td>
 					<td>${digimon.nome}</td>
@@ -37,13 +41,14 @@
 					<td><a href="editDigimon?id=${digimon.id}">Edit</a> <a
 						href="deleteDigimon?id=${digimon.id}">Delete</a></td>
 				</tr>
+				</c:if>
 			</c:forEach>
 		</table>
 	</div>
 	<div align="right">
 		<h2>Manager Allenatore</h2>
 		<h3>
-			<a href="newAllenatore">New Allenatore</a>
+			<a href="newAllenatore">Aggiungi un Allenatore</a>
 		</h3>
 		<table border="1" cellpadding="5">
 			<tr>

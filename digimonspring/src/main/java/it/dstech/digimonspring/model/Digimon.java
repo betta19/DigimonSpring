@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import net.bytebuddy.implementation.bind.annotation.Default;
+
 @Entity
 
 public class Digimon {
@@ -20,6 +22,9 @@ public class Digimon {
 	private int def;
 	private int res;
 	private Evoluzione evo;
+	
+	private boolean assegnato;
+	
 	@ManyToOne
     @JoinColumn(name="allenatore")
     private Allenatore allenatore;
@@ -29,7 +34,7 @@ public class Digimon {
 
 
 
-	protected Digimon(Long id, String nome, int hp, int atk, int def, int res, Evoluzione evo, Allenatore allenatore) {
+	protected Digimon(Long id, String nome, int hp, int atk, int def, int res, Evoluzione evo, Allenatore allenatore, boolean assegnato) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -39,6 +44,7 @@ public class Digimon {
 		this.res = res;
 		this.evo = evo;
 		this.allenatore = allenatore;
+		this.assegnato = assegnato;
 	}
 
 
@@ -113,6 +119,18 @@ public class Digimon {
 
 	public void setAllenatore(Allenatore allenatore) {
 		this.allenatore = allenatore;
+	}
+
+
+
+	public boolean isAssegnato() {
+		return assegnato;
+	}
+
+
+
+	public void setAssegnato(boolean assegnato) {
+		this.assegnato = assegnato;
 	}
 
 	

@@ -47,7 +47,8 @@ public class AllenatoreController {
 	public String addDigimonForm(@RequestParam("idAllenatore")long idAllenatore, Map<String, Object> model) {
 		Allenatore allenatore = allenatoreService.get(idAllenatore);
 		List<Digimon> listaDigimon = digimonService.listAll();
-		
+		List<Digimon> digimonAllenatore = allenatore.getListaDigimon();
+		model.put("digimonAllenatore", digimonAllenatore);
 		model.put("allenatore", allenatore);
 		model.put("digimon", listaDigimon);
 		return "scegli_digimon";
@@ -72,11 +73,14 @@ public class AllenatoreController {
 		allenatore.getListaDigimon().add(digimon);
 		digimon.setAllenatore(allenatore);
 		List<Digimon> listaDigimon = allenatore.getListaDigimon();
+		List<Digimon> listaDigimonCompleta = digimonService.listAll();
 		allenatoreService.save(allenatore);
+		digimon.setAssegnato(true);
 		digimonService.save(digimon);
 		model.put("allenatore", allenatore);
 		model.put("digimonAllenatore", listaDigimon);
-		return "lista_digimon_allenatore";
+		model.put("digimon", listaDigimonCompleta);
+		return "scegli_digimon";
 	}
 	
 	
