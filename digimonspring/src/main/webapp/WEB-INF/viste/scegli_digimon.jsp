@@ -12,7 +12,6 @@
 <body>
 	<div align="left">
 		<h2>Add digimon</h2>
-		<form:form action="aggiungiDigimon" modelAttribute="digimon">
 		
 			<h3>Ciao ${allenatore.nome}, scegli il tuo Digimon:</h3>
 			<table border="1" cellpadding="5">
@@ -28,6 +27,7 @@
 			</tr>
 			<c:forEach items="${digimon}" var="digimon">
 				<tr>
+		<form:form action="aggiungiDigimon" modelAttribute="digimon" method="post">
 					<td>${digimon.id}</td>
 					<td>${digimon.nome}</td>
 					<td>${digimon.hp}</td>
@@ -36,15 +36,15 @@
 					<td>${digimon.res}</td>
 					<td>${digimon.evo}</td>
 
-     
 					<td colspan="2"><input type="submit" value="Aggiungi"></td>
-				</tr>
-				<input type="hidden" name="idDigimon" value="${digimon.id}" />
-				</c:forEach>
-			</table>
-				<input type="hidden" name="idAllenatore" value="${allenatore.id}" />
-			
+					<input type="hidden" name="idDigimon" value="${digimon.id}" />
+					<input type="hidden" name="idAllenatore" value="${allenatore.id}" />
 		</form:form>
+				</tr>
+				</c:forEach>
+     
+			</table>
+			
 	</div>
 
 </body>

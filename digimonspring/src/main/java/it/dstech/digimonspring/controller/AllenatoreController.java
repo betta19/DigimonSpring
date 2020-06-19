@@ -44,7 +44,7 @@ public class AllenatoreController {
 	}
 	
 	@RequestMapping("/addDigimon")
-	public String addDigimonForm(@RequestParam long idAllenatore, Map<String, Object> model) {
+	public String addDigimonForm(@RequestParam("idAllenatore")long idAllenatore, Map<String, Object> model) {
 		Allenatore allenatore = allenatoreService.get(idAllenatore);
 		List<Digimon> listaDigimon = digimonService.listAll();
 		
@@ -64,8 +64,8 @@ public class AllenatoreController {
 //		return "lista_digimon_allenatore";
 //	}
 	
-	@RequestMapping("/aggiungiDigimon")
-	public String aggiungiAllaListaForm(@RequestParam long idDigimon, @RequestParam long idAllenatore, Map<String, Object> model) {
+	@RequestMapping(value = "/aggiungiDigimon", method = RequestMethod.POST)
+	public String aggiungiAllaListaForm(@RequestParam("idDigimon") long idDigimon, @RequestParam("idAllenatore") long idAllenatore, Map<String, Object> model) {
 	
 		Digimon digimon = digimonService.get(idDigimon);
 		Allenatore allenatore = allenatoreService.get(idAllenatore);
