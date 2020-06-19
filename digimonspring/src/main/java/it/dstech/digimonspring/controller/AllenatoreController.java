@@ -1,5 +1,6 @@
 package it.dstech.digimonspring.controller;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -43,28 +44,44 @@ public class AllenatoreController {
 	}
 	
 	@RequestMapping("/addDigimon")
-	public String addDigimonForm(Map<String, Object> model) {
-		Allenatore allenatore = new Allenatore();
+	public String addDigimonForm(@RequestParam long idAllenatore, Map<String, Object> model) {
+		Allenatore allenatore = allenatoreService.get(idAllenatore);
 		List<Digimon> listaDigimon = digimonService.listAll();
+		
 		model.put("allenatore", allenatore);
 		model.put("digimon", listaDigimon);
 		return "scegli_digimon";
 	}
 	
-	@RequestMapping("/addToAllenatore")
-	public String addToAllenatoreForm(Map<String, Object> model) {
-		Allenatore allenatore = new Allenatore();
-		Digimon digimon = new Digimon();
+//	@RequestMapping("/addToAllenatore")
+//	public String addToAllenatoreForm(@RequestParam long idDigimon, @RequestParam long idAllenatore,
+//			Map<String, Object> model) {
+//		Allenatore allenatore = allenatoreService.get(idAllenatore);
+//
+//		List<Digimon> listaDigimon = allenatore.getListaDigimon();
+//		model.put("allenatore", allenatore);
+//		model.put("digimonAllenatore", listaDigimon);
+//		return "lista_digimon_allenatore";
+//	}
+	
+	@RequestMapping("/aggiungiDigimon")
+	public String aggiungiAllaListaForm(@RequestParam long idDigimon, @RequestParam long idAllenatore, Map<String, Object> model) {
+	
+		Digimon digimon = digimonService.get(idDigimon);
+		Allenatore allenatore = allenatoreService.get(idAllenatore);
 		allenatore.getListaDigimon().add(digimon);
+		digimon.setAllenatore(allenatore);
 		List<Digimon> listaDigimon = allenatore.getListaDigimon();
+		allenatoreService.save(allenatore);
+		digimonService.save(digimon);
 		model.put("allenatore", allenatore);
 		model.put("digimonAllenatore", listaDigimon);
-		return "scegli_digimon";
+		return "lista_digimon_allenatore";
 	}
 	
 	
 	@RequestMapping(value = "/saveAllenatore", method = RequestMethod.POST)
-	public String saveAllenatore(@ModelAttribute("digimon") Allenatore allenatore) {
+	public String saveAllenatore(@ModelAttribute("allenatore") Allenatore allenatore) {
 		allenatoreService.save(allenatore);
 		return "redirect:/";
 	}

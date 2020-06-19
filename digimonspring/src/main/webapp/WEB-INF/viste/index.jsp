@@ -54,7 +54,7 @@
 				<tr>
 					<td>${allenatore.id}</td>
 					<td>${allenatore.nome}</td>
-					<td><a href="addDigimon?id=${allenatore.id}">Add Digimon</a> <a
+					<td><a href="addDigimon?idAllenatore=${allenatore.id}">Add Digimon</a> <a
 						href="editAllenatore?id=${allenatore.id}">Edit</a> <a
 						href="deleteAllenatore?id=${allenatore.id}">Delete</a></td>
 				</tr>

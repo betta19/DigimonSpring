@@ -12,50 +12,10 @@
 <body>
 	<div align="left">
 		<h2>Add digimon</h2>
-		<form:form action="addToAllenatore" method="post"
-			modelAttribute="digimon">
+		<form:form action="aggiungiDigimon" modelAttribute="digimon">
+		
 			<h3>Ciao ${allenatore.nome}, scegli il tuo Digimon:</h3>
-			<table border="0" cellpadding="5">
-				<tr>
-					<td>ID:</td>
-					<td>${digimon.id}<form:hidden path="id" />
-					</td>
-				</tr>
-				<tr>
-					<td>Nome:</td>
-					<td><form:input path="nome" /></td>
-				</tr>
-				<tr>
-					<td>HP:</td>
-					<td><form:input path="hp" /></td>
-				</tr>
-				<tr>
-					<td>Attacco:</td>
-					<td><form:input path="atk" /></td>
-				</tr>
-				<tr>
-					<td>Difesa:</td>
-					<td><form:input path="def" /></td>
-				</tr>
-				<tr>
-					<td>Resistenza:</td>
-					<td><form:input path="res" /></td>
-				</tr>
-				<tr>
-					<td>Evoluzione:</td>
-					<td><form:input path="evo" /></td>
-				</tr>
-				<tr>
-					<td colspan="2"><input type="submit" value="Aggiungi"></td>
-				</tr>
-			</table>
-		</form:form>
-	</div>
-
-	<div align="left">
-		<h2>Add digimon</h2>
-		<h3>Ciao ${allenatore.nome}, ecco la tua lista Digimon:</h3>
-		<table border="1" cellpadding="5">
+			<table border="1" cellpadding="5">
 			<tr>
 				<th>ID</th>
 				<th>Nome</th>
@@ -64,8 +24,9 @@
 				<th>Difesa</th>
 				<th>Resistenza</th>
 				<th>Evoluzione</th>
+				<th>Scegli Digimon</th>
 			</tr>
-			<c:forEach items="${digimonAllenatore}" var="digimon">
+			<c:forEach items="${digimon}" var="digimon">
 				<tr>
 					<td>${digimon.id}</td>
 					<td>${digimon.nome}</td>
@@ -75,10 +36,16 @@
 					<td>${digimon.res}</td>
 					<td>${digimon.evo}</td>
 
-					<td><a href="editDigimon?id=${digimon.id}">Edit</a></td>
+     
+					<td colspan="2"><input type="submit" value="Aggiungi"></td>
 				</tr>
-			</c:forEach>
-		</table>
+				<input type="hidden" name="idDigimon" value="${digimon.id}" />
+				</c:forEach>
+			</table>
+				<input type="hidden" name="idAllenatore" value="${allenatore.id}" />
+			
+		</form:form>
 	</div>
+
 </body>
 </html>
