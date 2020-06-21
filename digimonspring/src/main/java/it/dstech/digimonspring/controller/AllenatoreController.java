@@ -71,6 +71,25 @@ public class AllenatoreController {
 		return "lista_digimon_allenatore";
 	}
 	
+	@RequestMapping("/editDigimonAllenatore")
+	public String editDigimonForm(@RequestParam("idDigimon") long idDigimon, @RequestParam("idAllenatore") long idAllenatore, Map<String, Object> model) {
+		Digimon digimon = digimonService.get(idDigimon);
+		Allenatore allenatore = allenatoreService.get(idAllenatore);
+		model.put("digimon", digimon);
+		model.put("allenatore", allenatore);
+		return "edit_digimon_allenatore";
+	}
+	
+	@RequestMapping(value = "/saveDigimonAlleatore", method = RequestMethod.POST)
+	public String saveDigimon(@ModelAttribute("digimon") Digimon digimon, @RequestParam("idAllenatore") long idAllenatore) {
+		Allenatore allenatore = allenatoreService.get(idAllenatore);
+		allenatore.getListaDigimon().add(digimon);
+		allenatoreService.save(allenatore);
+		digimon.setAllenatore(allenatore);
+		digimonService.save(digimon);
+		return "redirect:/";
+	}
+	
 	@RequestMapping(value = "/visualizzaListaDigimonAllenatore")
 	public String visualizzaListaDigimonAllenatore(@RequestParam("idAllenatore") long idAllenatore, Map<String, Object> model) {
 		Allenatore allenatore = allenatoreService.get(idAllenatore);

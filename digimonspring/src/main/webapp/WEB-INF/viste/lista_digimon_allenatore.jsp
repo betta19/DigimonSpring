@@ -24,20 +24,24 @@
 			</tr>
 			<c:forEach items="${digimonAllenatore}" var="digimon">
 				<tr>
-					<td>${digimon.id}</td>
-					<td>${digimon.nome}</td>
-					<td>${digimon.hp}</td>
-					<td>${digimon.atk}</td>
-					<td>${digimon.def}</td>
-					<td>${digimon.res}</td>
-					<td>${digimon.evo}</td>
+					<form:form action="editDigimonAllenatore" modelAttribute="digimon"
+						method="post">
+						<td>${digimon.id}</td>
+						<td>${digimon.nome}</td>
+						<td>${digimon.hp}</td>
+						<td>${digimon.atk}</td>
+						<td>${digimon.def}</td>
+						<td>${digimon.res}</td>
+						<td>${digimon.evo}</td>
 
-					<td><a href="editDigimon?id=${digimon.id}">Edit</a></td>
+						<td colspan="2"><input type="submit" value="Modifica"></td>
+						<input type="hidden" name="idDigimon" value="${digimon.id}" />
+						<input type="hidden" name="idAllenatore" value="${allenatore.id}" />
+					</form:form>
 				</tr>
 			</c:forEach>
 		</table>
-		<br>
-		<a href="homeAllenatore">Torna alla home</a>
+		<br> <a href="homeAllenatore">Torna alla home</a>
 	</div>
 </body>
 </html>
