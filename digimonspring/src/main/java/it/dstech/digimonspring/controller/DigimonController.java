@@ -48,12 +48,21 @@ public class DigimonController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value = "/ordinamento")
+	public ModelAndView visualizzaListaDigimonOrdinati() {
+		ModelAndView mav = new ModelAndView("liste_ordinate");
+		mav.addObject("listaDigimonAttacco", digimonService.ordinaPerAttacco(digimonService.listAll()));
+		mav.addObject("listaDigimonDifesa", digimonService.ordinaPerDifesa(digimonService.listAll()));
+		mav.addObject("listaDigimonResistenza", digimonService.ordinaPerResistenza(digimonService.listAll()));
+		mav.addObject("listaDigimonEvoluzione", digimonService.ordinaPerEvoluzione(digimonService.listAll()));
+		return mav;
+	}
+	
 	@RequestMapping("/editDigimon")
 	public ModelAndView editDigimonForm(@RequestParam long id) {
 		ModelAndView mav = new ModelAndView("edit_digimon");
 		Digimon digimon = digimonService.get(id);
 		mav.addObject("digimon", digimon);
-		
 		return mav;
 	}
 	

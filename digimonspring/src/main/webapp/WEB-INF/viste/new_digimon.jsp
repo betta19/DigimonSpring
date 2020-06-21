@@ -15,7 +15,6 @@
 		<form:form action="saveDigimon" method="post" modelAttribute="digimon">
 			<table border="0" cellpadding="5">
 				<tr>
-					<td>ID:</td>
 					<td>${digimon.id}<form:hidden path="id" />
 					</td>
 				</tr>
@@ -48,6 +47,7 @@
 				</tr>
 			</table>
 		</form:form>
+		<a href="homeAllenatore">Torna alla home</a>
 	</div>
 </body>
 </html>

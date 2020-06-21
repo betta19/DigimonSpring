@@ -27,6 +27,7 @@
 				</tr>
 			</table>
 		</form:form>
+		<a href="homeAllenatore">Torna alla home</a>
 	</div>
 </body>
 </html>

@@ -54,20 +54,8 @@ public class AllenatoreController {
 		return "scegli_digimon";
 	}
 	
-//	@RequestMapping("/addToAllenatore")
-//	public String addToAllenatoreForm(@RequestParam long idDigimon, @RequestParam long idAllenatore,
-//			Map<String, Object> model) {
-//		Allenatore allenatore = allenatoreService.get(idAllenatore);
-//
-//		List<Digimon> listaDigimon = allenatore.getListaDigimon();
-//		model.put("allenatore", allenatore);
-//		model.put("digimonAllenatore", listaDigimon);
-//		return "lista_digimon_allenatore";
-//	}
-	
 	@RequestMapping(value = "/aggiungiDigimon", method = RequestMethod.POST)
 	public String aggiungiAllaListaForm(@RequestParam("idDigimon") long idDigimon, @RequestParam("idAllenatore") long idAllenatore, Map<String, Object> model) {
-	
 		Digimon digimon = digimonService.get(idDigimon);
 		Allenatore allenatore = allenatoreService.get(idAllenatore);
 		allenatore.getListaDigimon().add(digimon);
@@ -80,7 +68,15 @@ public class AllenatoreController {
 		model.put("allenatore", allenatore);
 		model.put("digimonAllenatore", listaDigimon);
 		model.put("digimon", listaDigimonCompleta);
-		return "scegli_digimon";
+		return "lista_digimon_allenatore";
+	}
+	
+	@RequestMapping(value = "/visualizzaListaDigimonAllenatore")
+	public String visualizzaListaDigimonAllenatore(@RequestParam("idAllenatore") long idAllenatore, Map<String, Object> model) {
+		Allenatore allenatore = allenatoreService.get(idAllenatore);
+		model.put("allenatore", allenatore);
+		model.put("digimonAllenatore", allenatore.getListaDigimon());
+		return "lista_digimon_allenatore";
 	}
 	
 	
@@ -95,7 +91,6 @@ public class AllenatoreController {
 		ModelAndView mav = new ModelAndView("edit_allenatore");
 		Allenatore allenatore = allenatoreService.get(id);
 		mav.addObject("allenatore", allenatore);
-		
 		return mav;
 	}
 	

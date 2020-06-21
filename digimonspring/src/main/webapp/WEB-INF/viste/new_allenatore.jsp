@@ -14,7 +14,6 @@
 		<form:form action="saveAllenatore" method="post" modelAttribute="allenatore">
 			<table border="0" cellpadding="5">
 				<tr>
-					<td>ID:</td>
 					<td>${allenatore.id}<form:hidden path="id" />
 					</td>
 				</tr>
@@ -27,6 +26,7 @@
 				</tr>
 			</table>
 		</form:form>
+		<a href="homeAllenatore">Torna alla home</a>
 	</div>
 </body>
 </html>
