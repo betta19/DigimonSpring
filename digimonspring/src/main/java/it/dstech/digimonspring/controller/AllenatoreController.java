@@ -86,6 +86,7 @@ public class AllenatoreController {
 		allenatore.getListaDigimon().add(digimon);
 		allenatoreService.save(allenatore);
 		digimon.setAllenatore(allenatore);
+		digimon.setAssegnato(true);
 		digimonService.save(digimon);
 		return "redirect:/";
 	}

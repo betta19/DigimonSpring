@@ -77,7 +77,7 @@
 							<td><a href="addDigimon?idAllenatore=${allenatore.id}">Add
 									Digimon</a></td>
 							<td><a href="visualizzaListaDigimonAllenatore?idAllenatore=${allenatore.id}">Visualizza la tua lista Digimon</a></td>
-							<td><a href="editAllenatore?id=${allenatore.id}">Edit</a></td>
+							<td><a href="editAllenatore?id=${allenatore.id}">Edit</a>
 							</td>
 						</tr>
 					</c:forEach>
